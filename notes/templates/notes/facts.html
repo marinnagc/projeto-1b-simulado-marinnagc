@@ -1,0 +1,32 @@
+<!-- facts.html -->
+
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container2">
+    <h1>Descrição</h1>
+    <form method="post" class="form-card">
+      {% csrf_token %}
+        <textarea
+          class="autoresize"
+          name="detalhes"
+          placeholder="Descrição"
+        ></textarea>
+        <button class="btn" type="submit">submit</button>
+    </form>
+    {% if facts%}
+      {% for fact in facts %}
+      <h1>{{n_fatos}} FunFacts cadastradas!</h1>
+      <div>
+        <h3>{fatc.descricao}</h3>
+        <h3>{fatc.curtidas}</h3>
+        <a name="curtir_button" href="/curtir/{{fact.id}}">Curtir!</a>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>Não há fatos interessantes no momento.</p>
+    {% endif %}
+    
+</main>
+{% endblock %}

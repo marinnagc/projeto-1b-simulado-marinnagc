@@ -1,0 +1,37 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container">
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        <input
+          class="form-card-title"
+          type="text"
+          name="titulo"
+          placeholder="Título"
+          value="{{nota.title}}"
+        />
+        <textarea
+          class="autoresize"
+          name="detalhes"
+          placeholder="Digite o conteúdo..."
+        >{{nota.content}}</textarea>
+        <input
+        class="tag"
+        type="text"
+        name="tag"
+        placeholder="Tag"
+        value="{{nota.tag.tag}}"
+        />
+        <ul class="linha2">
+            <li class="edit">
+                <a class="btn2" type="submit" href="/">cancelar</a>
+            </li>
+            <li class="edit">
+                <button class="btn3" type="submit">salvar</button>
+            </li>
+        </ul>
+      </form>
+</main>
+{% endblock %}

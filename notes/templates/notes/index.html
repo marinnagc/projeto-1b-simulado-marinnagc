@@ -1,0 +1,49 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container">
+  <form method="post" class="form-card">
+    {% csrf_token %}
+      <input
+        class="form-card-title"
+        type="text"
+        name="titulo"
+        placeholder="Título"
+      />
+      <textarea
+        class="autoresize"
+        name="detalhes"
+        placeholder="Digite o conteúdo..."
+      ></textarea>
+      <input
+      class="tag"
+      type="text"
+      name="tag"
+      placeholder="Adicione uma Tag"
+    />
+      <button class="btn" type="submit">Criar</button>
+    </form>
+    <div class="card-container">
+      {% for note in notes %}
+      <div class="card">
+        <ul class="linha">
+          <li>
+            <h3 class="card-title">{{note.title}}</h3>
+            <div class="card-content">
+              <p>{{note.content}}</p>
+            </div>
+            {% if note.tag.tag %}
+              <h3 class="tag_note">{{note.tag.tag}}</h3>
+            {% endif %}
+          </li>
+          <li class="lixeira">
+            <a name="edit_button"  href="/editar/{{note.id}}"><img src="{% static 'notes/img/editar.png' %}"></a>
+            <a name="delete_button" href="/delete/{{note.id}}"><img src="{% static 'notes/img/lixeira.png' %}"></a>
+          </li>
+          </ul>
+      </div>
+      {% endfor %}
+    </div>
+</main>
+{% endblock %}

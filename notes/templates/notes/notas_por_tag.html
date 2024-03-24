@@ -1,0 +1,34 @@
+<!-- lista_tags.html -->
+
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container">
+    {% if links %}
+    <div class="card-container">
+        {% for note in links %}
+        <div class="card">
+          <ul class="linha">
+            <li>
+              <h3 class="card-title">{{note.title}}</h3>
+              <div class="card-content">
+                <p>{{note.content}}</p>
+              </div>
+              {% if note.tag.tag %}
+                <h3 class="tag_note">{{note.tag.tag}}</h3>
+              {% endif %}
+            </li>
+            <li class="lixeira">
+              <a name="edit_button"  href="/editar/{{note.id}}"><img src="{% static 'notes/img/editar.png' %}"></a>
+              <a name="delete_button" href="/delete/{{note.id}}"><img src="{% static 'notes/img/lixeira.png' %}"></a>
+            </li>
+            </ul>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Nenhuma nota encontrada para esta tag.</p>
+    {% endif %}
+      </div>
+</main>
+{% endblock %}

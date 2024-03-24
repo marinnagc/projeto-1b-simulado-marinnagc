@@ -1,0 +1,27 @@
+<!-- lista_tags.html -->
+
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container2">
+  <ul>
+    <li>
+      <div class="linha3 divisoria2">
+        <h1 class="tabela1">TAGS</h1>
+        <h1 class="tabela2">ANOTAÇÕES</h1>
+      </div>
+    </li>
+    <li>
+      <div>
+        {% for tag in tags %}
+        <ul class="linha3 divisoria">
+          <li ><h3 class="item">{{ tag.tag }}</h3></li>
+          <li><a name="link_button"  href="/links/{{tag.id}}"><img class="link_img"  src="{% static 'notes/img/link.png' %}"></a></li>
+        </ul>
+        {% endfor %}
+      </div>
+    </li>
+  </ul>
+</main>
+{% endblock %}
